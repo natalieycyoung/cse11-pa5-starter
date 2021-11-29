@@ -4,8 +4,10 @@
  * @author Natalie Young
  * @since 2021-11-02
  */
+//package ArrayExamples;
 
 import tester.*;
+import java.util.Arrays;
 
 class ArrayExamples
 {
@@ -99,15 +101,41 @@ class ArrayExamples
 
 	/**
 	 * Takes array of double and two other doubles, returns array of
-	 * double
+	 * double that contains all elements in array between low and
+	 * high (both inclusive, assume low lt/e high) or empty
+	 * array if input array is empty
 	 *
 	 * @param doubleArray
 	 * @param low
 	 * @param high
 	 * @return numsInRange
 	 */
-//	static double[] numsWithinRange(double[] doubleArray, double low, double high)
+	static double[] numsWithinRange(double[] doubleArray, double low, double high)
 	{
+		double[] numsWithinRange;
+
+		if (doubleArray.length == 0 || doubleArray == null)
+		{
+			numsWithinRange = new double[0];
+			
+			return numsWithinRange;
+		}
+
+		int arraySize = countWithinRange(doubleArray, low, high);
+		numsWithinRange = new double[arraySize];
+		int rangeIndex = 0;
+
+		for (double doub : doubleArray)
+		{
+			if ((doub >= low) && (doub <= high))
+			{
+				numsWithinRange[rangeIndex] = doub;
+
+				rangeIndex += 1;
+			}
+		}
+
+		return numsWithinRange;
 	}
 
 	/**
@@ -127,8 +155,7 @@ class ArrayExamples
 			{
 				min = integer;
 			}
-
-			if (integer > max)
+			else if (integer > max)
 			{
 				max = integer;
 			}
@@ -147,13 +174,12 @@ class ArrayExamples
 	 */
 	static String earliest(String[] strArray)
 	{
-		String earliestStr = "";
+		Arrays.sort(strArray);
 
-
+		String earliestStr = strArray[0];
 
 		return earliestStr;
 	}
-	
 }
 
 class Pair
@@ -187,24 +213,78 @@ class ProvidedArrayExamples
 		double[] example = {0.1, 1.3, 2.6};
 		t.checkExpect(ArrayExamples.countWithinRange(example, 1.1, 2.2), 1);
 	}
-/*	
+	
 	void testNumsWithinRange(Tester t)
 	{
 		double[] example = {0.0, 3.0, 1.4, 1.5, 2.7, 9.1, 2.1};
 		double[] expected = {1.4, 1.5, 2.1};
 		t.checkExpect(ArrayExamples.numsWithinRange(example, 1.1, 2.2), expected);
 	}
-*/	
+	
 	void testMaxmin(Tester t)
 	{
 		int[] example = {4, 5, 2, 3, 1};
 		t.checkExpect(ArrayExamples.maxmin(example), new Pair(1, 5));
 	}
-/*	
+	
 	void testEarliest(Tester t)
 	{
 		String[] example = {"aa", "aab", "abcd", "a"};
 		t.checkExpect(ArrayExamples.earliest(example), "a");
 	}
-*/
+}
+
+class MyArrayExamples
+{
+	void testJoinWith(Tester t)
+	{
+		String[] example1 = {" ", "",";"};
+		t.checkExpect(ArrayExamples.joinWith(example1, ":"), " ::;");
+	}
+	
+	void testSomethingFalse(Tester t)
+	{
+		boolean[] example1 = {true, true};
+		boolean[] example2 = {};
+		t.checkExpect(ArrayExamples.somethingFalse(example1), false);
+		t.checkExpect(ArrayExamples.somethingFalse(example2), false);
+	}
+	
+	void testCountWithinRange(Tester t)
+	{
+		double[] example1 = {0.0, 0.0, 0.0};
+		double[] example2 = {};
+		t.checkExpect(ArrayExamples.countWithinRange(example1, 1.1, 2.2), 0);
+		t.checkExpect(ArrayExamples.countWithinRange(example2, 1.1, 2.2), 0);
+	}
+	
+	void testNumsWithinRange(Tester t)
+	{
+		double[] example1 = {0.0, -3.0, 1.4, -1.5, 2.7, 9.1, 2.1};
+		double[] expected1 = {1.4, 2.1};
+		double[] example2 = {};
+		double[] expected2 = {};
+		t.checkExpect(ArrayExamples.numsWithinRange(example1, 1.1, 2.2), expected1);
+		t.checkExpect(ArrayExamples.numsWithinRange(example2, 1.1, 2.2), expected2);
+	}
+	
+	void testMaxmin(Tester t)
+	{
+		int[] example1 = {4, 5, -9, 3, 1};
+		int[] example2 = {1, 1, 1, 1, 1};
+		int[] example3 = {2};
+		t.checkExpect(ArrayExamples.maxmin(example1), new Pair(-9, 5));
+		t.checkExpect(ArrayExamples.maxmin(example2), new Pair(1, 1));
+		t.checkExpect(ArrayExamples.maxmin(example3), new Pair(2, 2));
+	}
+	
+	void testEarliest(Tester t)
+	{
+		String[] example1 = {"aa", "aab", "abcd", "a"};
+		String[] example2 = {"b", "b", "b", "b"};
+		String[] example3 = {"c"};
+		t.checkExpect(ArrayExamples.earliest(example1), "a");
+		t.checkExpect(ArrayExamples.earliest(example2), "b");
+		t.checkExpect(ArrayExamples.earliest(example3), "c");
+	}
 }

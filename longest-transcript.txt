@@ -1,0 +1,27 @@
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa5-starter
+$ javac Longest.java
+
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa5-starter
+$ java Longest which argument is the longest
+argument
+
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa5-starter
+$ java Longest one two three four
+three
+
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa5-starter
+$ java Longest
+
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa5-starter
+$ java Longest for fore four
+fore
+
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa5-starter
+$ java Longest java sucks; I had classpath issues
+sucks
+-bash: I: command not found
+
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa5-starter
+$ java Longest karat caret carrot
+carrot
+
