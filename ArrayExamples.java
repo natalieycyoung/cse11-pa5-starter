@@ -239,23 +239,31 @@ class MyArrayExamples
 	void testJoinWith(Tester t)
 	{
 		String[] example1 = {" ", "",";"};
+		String[] example2 = {"1", "2"};
+		String[] example3 = {"y", "z"};
 		t.checkExpect(ArrayExamples.joinWith(example1, ":"), " ::;");
+		t.checkExpect(ArrayExamples.joinWith(example2, ";"), "1;2");
+		t.checkExpect(ArrayExamples.joinWith(example3, "."), "y.z");
 	}
 	
 	void testSomethingFalse(Tester t)
 	{
 		boolean[] example1 = {true, true};
 		boolean[] example2 = {};
+		boolean[] example3 = {false};
 		t.checkExpect(ArrayExamples.somethingFalse(example1), false);
 		t.checkExpect(ArrayExamples.somethingFalse(example2), false);
+		t.checkExpect(ArrayExamples.somethingFalse(example3), true);
 	}
 	
 	void testCountWithinRange(Tester t)
 	{
 		double[] example1 = {0.0, 0.0, 0.0};
 		double[] example2 = {};
+		double[] example3 = {1.1};
 		t.checkExpect(ArrayExamples.countWithinRange(example1, 1.1, 2.2), 0);
 		t.checkExpect(ArrayExamples.countWithinRange(example2, 1.1, 2.2), 0);
+		t.checkExpect(ArrayExamples.countWithinRange(example3, 1.1, 2.2), 1);
 	}
 	
 	void testNumsWithinRange(Tester t)
@@ -264,8 +272,11 @@ class MyArrayExamples
 		double[] expected1 = {1.4, 2.1};
 		double[] example2 = {};
 		double[] expected2 = {};
+		double[] example3 = {0.0};
+		double[] expected3 = {0.0};
 		t.checkExpect(ArrayExamples.numsWithinRange(example1, 1.1, 2.2), expected1);
 		t.checkExpect(ArrayExamples.numsWithinRange(example2, 1.1, 2.2), expected2);
+		t.checkExpect(ArrayExamples.numsWithinRange(example3, 0.0, 0.0), expected3);
 	}
 	
 	void testMaxmin(Tester t)
